@@ -3,7 +3,7 @@ import Layout from './pages/Layout'
 
 const App = () => {
   return (
-    <div className='h-screen w-screen text-4xl text-center'>
+    <div className='h-screen w-screen  text-center'>
       <Layout/>
     </div>
   )
