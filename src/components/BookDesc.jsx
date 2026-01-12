@@ -3,25 +3,36 @@ import { Star, BookOpen, User, TrendingUp, Heart, Share2, Bookmark } from "lucid
 import {useParams} from "react-router-dom"
 // Mock data for demonstration
 import {Link} from "react-router-dom"
-const mockBook = {
-  id: 1,
-  title: "The Midnight Library",
-  author: "Matt Haig",
-  category: "Fiction",
-  rating: 4.5,
-  image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop",
-  description: "Between life and death there is a library, and within that library, the shelves go on forever. Every book provides a chance to try another life you could have lived. To see how things would be if you had made other choices...",
-  detailedDescription: {
-    story: "Nora Seed finds herself faced with the possibility of changing her life for a new one, following a different career, undoing old breakups, realizing her dreams of becoming a glaciologist.\n\nShe must search within herself as she travels through the Midnight Library to decide what is truly fulfilling in life, and what makes it worth living in the first place.",
-    authorBio: "Matt Haig is the author of the internationally bestselling memoir Reasons to Stay Alive, along with six novels, including How to Stop Time, and several award-winning children's books.\n\nHis work has been translated into more than thirty languages.",
-    excitingContext: "This book has captivated millions of readers worldwide with its unique premise and emotional depth. It's a story about regret, hope, and the infinite possibilities that life offers.\n\nPerfect for fans of philosophical fiction and stories that make you think about your own life choices."
-  }
-};
+import {useSelector} from "react-redux"
+import { useEffect } from "react";
 
 const BookDesc = ({data}) => {
   const {id} = useParams();
-  const book =data.find((book)=>{return book.id==id });
+  const [addedBooks,setAddedBooks]=useState([])
+    const books=useSelector((state)=>{return state.books.addedBooks})
+    useEffect(() => {
+        setAddedBooks(books);
+    }, [books]);
 
+  const book = addedBooks.find((book) => book.id == id) || data.find((book) => book.id == id); 
+    console.log(book)
+    console.log(id)
+  if (!book) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-indigo-50">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">Book Not Found</h1>
+          <p className="text-gray-600 mb-8">The book you're looking for doesn't exist.</p>
+          <Link 
+            to="/books" 
+            className="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
+          >
+            Browse Books
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const renderStars = (rating) => {
     return [...Array(5)].map((_, i) => (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import BookList from './BookList'
-
+import booksData from '../utils/BooksData'
 const Body = () => {
     const [catagory,setCategory]=useState("All")
     return (
@@ -49,7 +49,7 @@ const Body = () => {
           </div >
           <div className=' w-screen flex flex-row items-center justify-center p-10'>
 
-          <BookList catagory={catagory} size={10}/>
+          <BookList catagory={catagory} size={10} data={booksData}/>
           </div>
         </div>
        
