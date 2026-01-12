@@ -22,7 +22,7 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          <Link to="/books/Fiction" className="hover:text-white/70 transition">
+          <Link to="/books" className="hover:text-white/70 transition">
             Browse Books
           </Link>
         </li>
@@ -69,7 +69,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link to="/books/Fiction" onClick={() => setMenuOpen(false)}>
+              <Link to="/books" onClick={() => setMenuOpen(false)}>
                 Browse Books
               </Link>
             </li>

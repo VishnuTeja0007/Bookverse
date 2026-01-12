@@ -4,7 +4,7 @@ const categories = ["All", "Fiction", "Non-Fiction", "Science", "Philosophy"];
 
 const Sidebar = () => {
   return (
-    <aside className="w-64 border-r p-6 h-auto">
+    <aside className="w-64 border-r-2 border-r-gray-200 p-6 h-auto">
       <h2 className="font-bold text-sm mb-4">Categories</h2>
 
       <ul className="space-y-3">

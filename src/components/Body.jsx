@@ -39,6 +39,7 @@ const Body = () => {
           <div className='text-2xl font-bold'>
             Exlore by Categories 
           </div>
+          {/* Category filters toggle the list below */}
           <div className='flex flex-wrap justify-center items-center gap-4 mt-4'>
         <button type="button" onClick={()=>{setcatagory("Fiction")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>Fiction</button>
         <button type="button" onClick={()=>{setcatagory("Non-Fiction")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>Non - Fiction</button>

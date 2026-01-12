@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { BookOpen, User, Image, FileText, Plus, ArrowLeft } from "lucide-react";
+import { BookOpen, User, Image, Plus, ArrowLeft, Star } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addBook } from "../utils/bookSlice";
-import booksData from "../utils/BooksData";
 
 const AddBook = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // form state kept as a single object for easy reset
   const [book, setBook] = useState({
-    id:"",
+    id: "",
     title: "",
-    rating:"",
+    rating: "",
     author: "",
     description: "",
     catagory: "",
@@ -25,20 +25,21 @@ const AddBook = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Track form input and clear a field's error as soon as it changes
   const handleChange = (e) => {
-    setBook({ ...book, [e.target.name]: e.target.value });
-    if (errors[e.target.name]) {
-      setErrors({ ...errors, [e.target.name]: "" });
-    }
+    const { name, value } = e.target;
+    setBook({ ...book, [name]: value });
+    if (errors[name]) setErrors({ ...errors, [name]: "" });
   };
 
+  // Validate required fields, then dispatch and reset
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newErrors = {};
     if (!book.title.trim()) newErrors.title = "Title is required";
     if (!book.author.trim()) newErrors.author = "Author is required";
-    if (!book.catagory) newErrors.catagory = "catagory is required";
+    if (!book.catagory) newErrors.catagory = "Category is required";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -48,7 +49,8 @@ const AddBook = () => {
     dispatch(
       addBook({
         ...book,
-        id: Date.now(), // Use timestamp for unique ID
+        // timestamp keeps keys unique without extra dependencies
+        id: Date.now(),
         rating: parseFloat(book.rating) || 0,
         detailedDescription: {
           story: book.storyDescription || "No story description available.",
@@ -61,10 +63,11 @@ const AddBook = () => {
     setIsSubmitted(true);
 
     setTimeout(() => {
+      // return form to a clean slate after a short success state
       setBook({
-        id:"",
+        id: "",
         title: "",
-        rating:"",
+        rating: "",
         author: "",
         description: "",
         catagory: "",
@@ -116,22 +119,23 @@ const AddBook = () => {
               placeholder="Enter the book title..."
               icon={<BookOpen className="w-5 h-5 text-gray-400" />}
             />
-            {/* Title */}
+            {/* Rating */}
             <InputField
               label="Book Rating"
               name="rating"
+              type="number"
               value={book.rating}
               onChange={handleChange}
               error={errors.rating}
               placeholder="Enter the book rating..."
-              icon={<BookOpen className="w-5 h-5 text-gray-400" />}
+              icon={<Star className="w-5 h-5 text-gray-400" />}
             />
 
 
             {/* catagory */}
             <div className="mb-6">
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                catagory <span className="text-red-500">*</span>
+                Catagory <span className="text-red-500">*</span>
               </label>
               <select
                 name="catagory"
