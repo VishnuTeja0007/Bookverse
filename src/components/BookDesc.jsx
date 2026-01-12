@@ -1,117 +1,181 @@
-import { useParams } from "react-router-dom";
-import "./BookDesc.css"
-import { FaStar, FaRegStar } from "react-icons/fa";
+import { useState } from "react";
+import { Star, BookOpen, User, TrendingUp, Heart, Share2, Bookmark } from "lucide-react";
+import {useParams} from "react-router-dom"
+// Mock data for demonstration
+import {Link} from "react-router-dom"
+const mockBook = {
+  id: 1,
+  title: "The Midnight Library",
+  author: "Matt Haig",
+  category: "Fiction",
+  rating: 4.5,
+  image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop",
+  description: "Between life and death there is a library, and within that library, the shelves go on forever. Every book provides a chance to try another life you could have lived. To see how things would be if you had made other choices...",
+  detailedDescription: {
+    story: "Nora Seed finds herself faced with the possibility of changing her life for a new one, following a different career, undoing old breakups, realizing her dreams of becoming a glaciologist.\n\nShe must search within herself as she travels through the Midnight Library to decide what is truly fulfilling in life, and what makes it worth living in the first place.",
+    authorBio: "Matt Haig is the author of the internationally bestselling memoir Reasons to Stay Alive, along with six novels, including How to Stop Time, and several award-winning children's books.\n\nHis work has been translated into more than thirty languages.",
+    excitingContext: "This book has captivated millions of readers worldwide with its unique premise and emotional depth. It's a story about regret, hope, and the infinite possibilities that life offers.\n\nPerfect for fans of philosophical fiction and stories that make you think about your own life choices."
+  }
+};
 
-import { Link } from "react-router-dom";
+const BookDesc = ({data}) => {
+  const {id} = useParams();
+  const book =data.find((book)=>{return book.id==id });
 
-// import { useDispatch } from "react-redux";
-// import { addItem } from "../utils/cartSlice";
-// import { removeItem } from "../utils/cartSlice";
-// import { clearCart } from "../utils/cartSlice";
-export default function BookDesc({ data }) {
-    // const dispatch=useDispatch()
-    // function handleAddItem(book){
-    //     dispatch(addItem(book))
-    // }
-    // function handleRemoveItem(){
-         // dispatch(removeItem())
-    // }
-    // function handleClearCart(){
-    //         // dispatch(clearCart())
-    //     }
-    const renderStars = (rating) => {
-    // 
-        const stars = [];
-        for (let i = 1; i <= 5; i++) {
-            stars.push(
-                i <= Math.floor(rating) ? (
-                    <FaStar key={i} className="text-yellow-500" />
-                ) : (
-                    <FaRegStar key={i} className="text-gray-400" />
-                )
-            );
-        }
-        return stars;
-    };
 
-    const { id } = useParams();
-    const book = data.find((book) => book.id === Number(id));
-    return (
-        <article className="article-grid bg-gray-200 p-4 rounded-lg shadow-md">
+  const renderStars = (rating) => {
+    return [...Array(5)].map((_, i) => (
+      <Star
+        key={i}
+        className={`w-5 h-5 ${i < Math.floor(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
+      />
+    ));
+  };
 
-            {/* IMAGE & AUTHOR */}
-            <div className="image flex flex-col items-center justify-center gap-2">
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50">
+      <div className="max-w-7xl text-lg mx-auto px-6 py-12 space-y-16">
+
+        {/* Hero Section */}
+        <div className="xxs:flex-col s:flex-row flex items-center justify-center gap-12 ">
+          
+          {/* Book Cover with Actions */}
+          <div className="lg:col-span-2 space-y-6">
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl opacity-20 blur-2xl group-hover:opacity-30 transition duration-500" />
+              <div className="relative w-[300px] h-auto bg-white rounded-2xl shadow-2xl p-6">
                 <img
-                    src={"https://m.media-amazon.com/images/I/617lxveUjYL._SL1500_.jpg"}
-                    alt={book.title}
-                    className="w-[200px] rounded-md shadow"
+                  src={book.image}
+                  alt={book.title}
+                  className="w-[300px] h-auto object-contain rounded-xl"
                 />
-                <p className="text-lg font-bold text-black">
-                    <span className="font-bold">{book.title}</span>
-                </p>
+              </div>
             </div>
 
-            {/* DESCRIPTION */}
-            <div className="description bg-gray-100 flex flex-col gap-4 p-4 rounded-md">
+            
+          </div>
 
-                <h1 className="text-2xl font-bold text-center text-black">
-                    {book.title}
-                </h1>
-
-                <div>
-                    <h2 className="text-xl font-semibold text-black mb-1">
-                        Description:
-                    </h2>
-                    <p className="text-gray-700">
-                        {book.description}
-                    </p>
-                </div>
-
-                <p className="text-lg font-semibold text-black">
-                    Author: <span className="font-normal">{book.author}</span>
-                </p>
-
-                {/* RATING */}
-                <div className="flex items-center gap-1">
-                    {renderStars(4)}
-                    <span className="ml-2 text-sm text-gray-600">
-                        ({4})
-                    </span>
-                </div>
-
-                {/* PRICE */}
-                <p className="text-xl font-bold text-green-600">
-                    ₹ {700}
-                </p>
-                {/* BUTTONS */}
-                <div className="flex gap-4 justify-center mt-4">
-                    
-                        <button
-                            type="button"
-                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-                            // onClick={()=>{handleAddItem(book)}}
-                        >
-                            Add to Cart
-                        </button>
-                   
-                    
-                        <button
-                            type="button"
-                            // onClick={handleRemoveItem}
-                            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
-                        >
-                            Buy Now
-                        </button>
-                        <button
-                            type="button"
-                            // onClick={handleClearCart}
-                            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
-                        >
-                            Buy Now
-                        </button>
-                </div>
-
+          {/* Book Details */}
+          <div className="flex flex-col items-center justify-center text-center h-auto gap:4">
+            
+            {/* Category Badge */}
+            <div className="inline-block">
+              <span className="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full text-sm font-semibold shadow-lg">
+                {book.category}
+              </span>
             </div>
-        </article>
-    );
-}
+
+            {/* Title & Author */}
+            <div className="space-y-3">
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent leading-tight">
+                {book.title}
+              </h1>
+              <div className="flex items-center gap-2 justify-center text-gray-600">
+                <p className="text-lg">by <span className="font-semibold text-center text-gray-800">{book.author}</span></p>
+              </div>
+            </div>
+
+            {/* Rating */}
+            <div className="flex items-center gap-6 py-4 border-y border-gray-200">
+              <div className="flex items-center gap-2">
+                {renderStars(book.rating)}
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-3xl font-bold text-gray-900">{book.rating}</span>
+                <span className="text-sm text-gray-500">/5.0</span>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className="p-2">
+              <p className="text-gray-700 text-lg p-4">
+                {book.description}
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <Link to="/books">
+            <button className="group relative w-full sm:w-auto overflow-hidden bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-10 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                Browse More
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </button>
+
+            </Link>
+            
+          
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-10">
+            
+            {/* Story Overview */}
+            <div className="bg-white rounded-2xl shadow-lg  p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center gap-3 mb-5">
+
+                <h2 className="text-2xl font-bold text-gray-900">Story Overview</h2>
+              </div>
+              <p className="text-gray-700 leading-relaxed text-sm whitespace-pre-line">
+                {book.detailedDescription.story}
+              </p>
+            </div>
+
+            {/* Author Bio */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center gap-3 mb-5">
+                <h2 className="text-2xl font-bold text-gray-900">About the Author</h2>
+              </div>
+              <p className="text-gray-700 leading-relaxed text-sm whitespace-pre-line">
+                {book.detailedDescription.authorBio}
+              </p>
+            </div>
+
+            {/* Why Read */}
+            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-lg p-8 border border-indigo-100">
+              <div className="flex items-center gap-3 mb-5">
+                
+                <h2 className="text-2xl font-bold text-gray-900">Why You Should Read This</h2>
+              </div>
+              <p className="text-gray-700 leading-relaxed text-sm whitespace-pre-line">
+                {book.detailedDescription.excitingContext}
+              </p>
+            </div>
+          </div>
+
+          {/* Ratings Panel */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 sticky top-6">
+              
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">Ratings & Reviews</h2>
+
+              {/* Overall Rating */}
+              <div className="flex items-center justify-center gap-6 pb-6 border-b border-gray-200">
+                <div className="text-center">
+                  <div className="text-6xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">
+                    {book.rating}
+                  </div>
+                  <div className="flex justify-center mt-2">
+                    {renderStars(book.rating)}
+                  </div>
+                </div>
+              
+              </div>
+
+              
+
+              {/* Review Button */}
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BookDesc;

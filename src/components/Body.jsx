@@ -49,7 +49,7 @@ const Body = () => {
           </div >
           <div className=' w-screen flex flex-row items-center justify-center p-10'>
 
-          <BookList catagory={catagory} size={6}/>
+          <BookList catagory={catagory} size={10}/>
           </div>
         </div>
        

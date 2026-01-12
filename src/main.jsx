@@ -7,7 +7,7 @@ import { RouterProvider } from 'react-router-dom'
 import Body from './components/Body.jsx'
 import BrowseBooks from './pages/BrowseBooks.jsx'
 import BookDesc from './components/BookDesc.jsx'
-
+import booksData from './utils/BooksData'
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +27,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/books/:catagory/:id",
-        element: <BookDesc />,
+        element: <BookDesc data={booksData} />,
       }
     ]
   }

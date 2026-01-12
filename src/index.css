@@ -5,3 +5,13 @@
 * {
     font-family: 'Poppins', sans-serif;
 }
+
+
+@theme {
+  /* Adding a new custom breakpoint */
+  --breakpoint-xs: 480px;
+--breakpoint-s: 560px;
+  /* Overriding existing default breakpoints */
+  --breakpoint-xxs: 320px;
+  --breakpoint-3xl: 1920px;
+}

@@ -1,7 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 const BookCard = React.memo(({ books }) => {
+      const renderStars = (rating) => { 
+        const stars = [];
+        for (let i = 1; i <= 5; i++) {
+            stars.push(
+                i <= Math.floor(rating) ? (
+                    <FaStar key={i} className="text-yellow-500" />
+                ) : (
+                    <FaRegStar key={i} className="text-gray-400" />
+                )
+            );
+        }
+        return stars;
+    };
   return (
     <div className="h-full w-full rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:bg-gray-200 transition-all duration-300 flex flex-col overflow-hidden">
 
@@ -31,10 +45,17 @@ const BookCard = React.memo(({ books }) => {
         <p className="text-sm font-medium text-gray-500 mt-auto">
           — {books.author}
         </p>
-
+        {/* RATING */}
+                <div className="flex items-center text-lg justify-center gap-1">
+                   
+                    {renderStars(books.rating)}
+                    <span className="ml-2 text-lg text-gray-600">
+                        ({books.rating})
+                    </span>
+                </div>
         {/* Action Button */}
         <Link
-          to={`/books/${books.id}`}
+          to={`/books/${books.category.toLowerCase()}/${books.id}`}
           className="mt-3 inline-block text-sm text-center rounded-lg bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 transition"
         >
           View Details
