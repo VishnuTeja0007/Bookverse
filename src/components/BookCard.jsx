@@ -55,7 +55,7 @@ const BookCard = React.memo(({ books }) => {
                 </div>
         {/* Action Button */}
         <Link
-          to={`/books/${books.category.toLowerCase()}/${books.id}`}
+          to={`/books/${books.catagory.toLowerCase()}/${books.id}`}
           className="mt-3 inline-block text-sm text-center rounded-lg bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 transition"
         >
           View Details

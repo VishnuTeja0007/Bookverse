@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BookList from './BookList'
 import booksData from '../utils/BooksData'
 const Body = () => {
-    const [catagory,setCategory]=useState("All")
+    const [catagory,setcatagory]=useState("All")
     return (
         <div className="relative flex flex-col items-center md:items-center justify-center 
     mt-6 md:mt-10 text-sm 
@@ -32,7 +32,7 @@ const Body = () => {
 
             {/* Description */}
             <p className="max-w-2xl text-center md:text-center text-base my-7 text-gray-600">
-                BookVerse is a modern online library where you can explore books by category,
+                BookVerse is a modern online library where you can explore books by catagory,
                 search by author or title, and manage your personal collection with ease.
             </p>
 
@@ -40,11 +40,11 @@ const Body = () => {
             Exlore by Categories 
           </div>
           <div className='flex flex-wrap justify-center items-center gap-4 mt-4'>
-        <button type="button" onClick={()=>{setCategory("Fiction")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>Fiction</button>
-        <button type="button" onClick={()=>{setCategory("Non-Fiction")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>Non - Fiction</button>
-        <button type="button" onClick={()=>{setCategory("Philosophy")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>Science</button>
-        <button type="button" onClick={()=>{setCategory("Science")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>Philosophy</button>
-        <button type="button" onClick={()=>{setCategory("All")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>All</button>
+        <button type="button" onClick={()=>{setcatagory("Fiction")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>Fiction</button>
+        <button type="button" onClick={()=>{setcatagory("Non-Fiction")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>Non - Fiction</button>
+        <button type="button" onClick={()=>{setcatagory("Philosophy")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>Science</button>
+        <button type="button" onClick={()=>{setcatagory("Science")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>Philosophy</button>
+        <button type="button" onClick={()=>{setcatagory("All")}} className='rounded-2xl hover:bg-teal-500 hover:text-white bg-teal-400 text-black font-semibold px-4 py-2'>All</button>
           
           </div >
           <div className=' w-screen flex flex-row items-center justify-center p-10'>

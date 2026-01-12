@@ -69,10 +69,10 @@ const BookDesc = ({data}) => {
           {/* Book Details */}
           <div className="flex flex-col items-center justify-center text-center h-auto gap:4">
             
-            {/* Category Badge */}
+            {/* catagory Badge */}
             <div className="inline-block">
               <span className="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full text-sm font-semibold shadow-lg">
-                {book.category}
+                {book.catagory}
               </span>
             </div>
 

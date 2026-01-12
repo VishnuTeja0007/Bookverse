@@ -15,7 +15,7 @@ const AddBook = () => {
     rating:"",
     author: "",
     description: "",
-    category: "",
+    catagory: "",
     image: "",
     authorDescription: "",
     storyDescription: "",
@@ -38,7 +38,7 @@ const AddBook = () => {
     const newErrors = {};
     if (!book.title.trim()) newErrors.title = "Title is required";
     if (!book.author.trim()) newErrors.author = "Author is required";
-    if (!book.category) newErrors.category = "Category is required";
+    if (!book.catagory) newErrors.catagory = "catagory is required";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -67,7 +67,7 @@ const AddBook = () => {
         rating:"",
         author: "",
         description: "",
-        category: "",
+        catagory: "",
         image: "",
         authorDescription: "",
         storyDescription: "",
@@ -128,29 +128,29 @@ const AddBook = () => {
             />
 
 
-            {/* Category */}
+            {/* catagory */}
             <div className="mb-6">
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Category <span className="text-red-500">*</span>
+                catagory <span className="text-red-500">*</span>
               </label>
               <select
-                name="category"
-                value={book.category}
+                name="catagory"
+                value={book.catagory}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 border-2 rounded-lg focus:ring-2 focus:ring-teal-500 ${
-                  errors.category
+                  errors.catagory
                     ? "border-red-300 bg-red-50"
                     : "border-gray-200 hover:border-gray-300"
                 }`}
               >
-                <option value="">Select Category</option>
+                <option value="">Select catagory</option>
                 <option value="fiction">Fiction</option>
                 <option value="non-fiction">Non-Fiction</option>
                 <option value="science">Science</option>
                 <option value="philosophy">Philosophy</option>
               </select>
-              {errors.category && (
-                <p className="mt-1 text-sm text-red-600">{errors.category}</p>
+              {errors.catagory && (
+                <p className="mt-1 text-sm text-red-600">{errors.catagory}</p>
               )}
             </div>
 

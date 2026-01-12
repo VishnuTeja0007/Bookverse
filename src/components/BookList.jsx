@@ -5,7 +5,7 @@ const BookList = ({ catagory, size, data }) => {
   if(catagory){
     const filteredBooks = catagory === "All" 
     ? data
-    :data.filter((book) => book.category.toLowerCase() === catagory.toLowerCase());
+    :data.filter((book) => book.catagory.toLowerCase() === catagory.toLowerCase());
     const limit = size ? size : (catagory === "All" ? 6 : filteredBooks.length);
     console.log(limit)
      return (
