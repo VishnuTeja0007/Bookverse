@@ -1,16 +1,69 @@
-# React + Vite
+# BookVerse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BookVerse is a React + Vite app for browsing, searching, and viewing book details. It includes category filtering, simple search over title/author, and support for user-added books persisted in Redux state.
 
-Currently, two official plugins are available:
+## Features
+- Browse by category (sidebar and header links)
+- Search by title or author (filters both catalog and added books)
+- View book details with rating and rich descriptions
+- Add your own books (stored in Redux state, shown in Added Books)
+- Responsive grid layout for cards and detail pages
+- Error boundary page for unknown routes
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- React 19 + Vite
+- Tailwind CSS v4
+- Redux Toolkit for user-added books
+- React Router for routing
+- Lucide/react-icons for UI icons
 
-## React Compiler
+## Getting Started
+Prerequisites: Node.js 18+ and npm.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev   # start dev server (default http://localhost:5173)
+npm run build # production build
+```
 
-## Expanding the ESLint configuration
+## Key Routes
+- `/` — landing with featured categories
+- `/books` — browse all books with search
+- `/books/:catagory` — browse by category
+- `/books/:catagory/:id` — book detail page
+- `/books/added-books` — user-added books
+- `/add-book` — add a new book
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure (high level)
+- `src/main.jsx` — router setup and route definitions
+- `src/App.jsx` — app shell
+- `src/pages/` — top-level pages
+  - `BrowseBooks.jsx` — search, filtering, listing
+  - `AddedBooks.jsx` — user-added books
+- `src/components/` — shared UI
+  - `BookList.jsx` — responsive grid renderer
+  - `BookCard.jsx` — individual book card
+  - `BookDesc.jsx` — book detail view
+  - `AddBook.jsx` — add-book form
+  - `Header.jsx`, `Footer.jsx`, `SideBar.jsx` — layout chrome
+- `src/utils/` — data and store
+  - `BooksData.js` — seed catalog data
+  - `appStore.js`, `bookSlice.js` — Redux store and slice
+
+## Notes
+- The app uses the spelling `catagory` in data/props for compatibility with existing records.
+- User-added books live only in Redux state (no backend).
+- Tailwind classes are used directly; no separate CSS framework config is required beyond Tailwind v4 defaults.
+
+## Routes
+- `/` — landing with featured categories
+- `/books` — browse all books with search
+- `/books/:catagory` — browse by category
+- `/books/:catagory/:id` — book detail page
+- `/books/added-books` — user-added books
+- `/add-book` — add a new book
+
+## Contact
+- WhatsApp: 6302272812
+- Email: vishnuteja98765@gmail.com
+- GitHub: https://github.com/VishnuTeja0007/ToDoList-Vishnu-Teja.git

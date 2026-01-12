@@ -41,14 +41,14 @@ const BrowseBooks = () => {
   );
 
   return (
-    <div className="flex">
+    <div className="flex flex-col md:flex-row">
       <Sidebar />
 
-      <div className="flex-1 p-6">
-        <div className="mr-auto ml-auto mb-5 flex w-[70%] items-center justify-center gap-2 relative">
+      <div className="flex-1 p-4 md:p-6">
+        <div className="mr-auto ml-auto mb-5 flex w-full md:w-[70%] items-center justify-center gap-2 relative">
           <input
             type="text"
-            className="w-full h-[50px] p-6 rounded-full border border-teal-600 text-xl font-semibold"
+            className="w-full h-[50px] p-4 md:p-6 rounded-full border border-teal-600 text-lg md:text-xl font-semibold"
             placeholder="Search by Author or Title"
             value={search}
             onChange={(e) => setSearch(e.target.value)}

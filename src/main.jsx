@@ -24,26 +24,26 @@ const appRouter = createBrowserRouter([
       {
         path: "/books",
         element: <BrowseBooks />,
-        errorElement:<Error></Error>,
+
       },
       {
         path: "/books/:catagory",
         element: <BrowseBooks />,
-        errorElement:<Error></Error>,
+
       },{
         path: "/books/added-books",
         element: <AddedBooks />,
-        errorElement:<Error></Error>,
+
       },
       {
         path: "/books/:catagory/:id",
         element: <BookDesc data={booksData} />,
-        errorElement:<Error></Error>,
+
         },
       {
         path: "/add-book",
         element: <AddBook></AddBook>,
-        errorElement:<Error></Error>,
+
       }
     ]
   }
