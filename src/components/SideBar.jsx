@@ -22,6 +22,18 @@ const Sidebar = () => {
             </NavLink>
           </li>
         ))}
+        <li>
+        <NavLink
+              to={ `/books/added-books`}
+              className={({ isActive }) =>
+                `block text-lg px-3 py-2 rounded ${
+                  isActive ? "bg-teal-600 text-white" : "hover:bg-gray-100"
+                }`
+              }
+             end >
+              Added Books
+            </NavLink>
+        </li>
       </ul>
     </aside>
   );
